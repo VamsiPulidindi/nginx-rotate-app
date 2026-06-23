@@ -1,18 +1,35 @@
-- name: Deploy
-  uses: appleboy/ssh-action@v1.2.0
-  with:
-    host: ${{ secrets.EC2_HOST }}
-    username: ec2-user
-    key: ${{ secrets.EC2_SSH_KEY }}
-    script: |
-      cd /home/ec2-user/nginx-rotate-app
+name: Deploy to EC2
 
-      docker stop nginx-rotate || true
-      docker rm nginx-rotate || true
+on:
+  push:
+    branches:
+      - main
 
-      docker build -t nginx-rotate-app .
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
 
-      docker run -d \
-        --name nginx-rotate \
-        -p 9091:80 \
-        nginx-rotate-app
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Deploy to EC2
+        uses: appleboy/ssh-action@v1.2.0
+        with:
+          host: ${{ secrets.EC2_HOST }}
+          username: ${{ secrets.EC2_USER }}
+          key: ${{ secrets.EC2_SSH_KEY }}
+          script: |
+            cd /home/ec2-user/app
+
+            git pull origin main
+
+            docker stop nginx-rotate || true
+            docker rm nginx-rotate || true
+
+            docker build -t nginx-rotate-app .
+
+            docker run -d \
+              --name nginx-rotate \
+              -p 9091:80 \
+              nginx-rotate-app
