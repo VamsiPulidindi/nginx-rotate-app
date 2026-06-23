@@ -3,8 +3,29 @@
 <head>
     <title>Page 2</title>
     <meta http-equiv="refresh" content="5">
+    <style>
+        body { background-color: lightgreen; font-family: sans-serif; margin: 0; padding: 20px; }
+        .spacer { height: 600px; background: rgba(0,0,0,0.05); }
+        .target { padding: 40px; background: darkgreen; color: white; text-align: center; font-size: 24px; }
+    </style>
 </head>
-<body style="background-color: lightgreen;">
-<h1>Page 2</h1>
+<body>
+    <h1>Page 2 - Top</h1>
+    <div class="spacer"></div>
+
+    <div id="middle-section" class="target">
+        🟩 Automatically Jumped to Middle Section!
+    </div>
+
+    <div class="spacer"></div>
+    <h1>Page 2 - Bottom</h1>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            const middle = document.getElementById("middle-section");
+            middle.scrollIntoView({ behavior: "smooth", block: "center" });
+        });
+    </script>
 </body>
 </html>
+

@@ -3,8 +3,31 @@
 <head>
     <title>Page 4</title>
     <meta http-equiv="refresh" content="5">
+    <style>
+        body { background-color: blueviolet; color: white; font-family: sans-serif; margin: 0; padding: 20px; }
+        .spacer { height: 1500px; }
+        .target-box { background: rgba(255,255,255,0.2); padding: 30px; border: 3px dashed white; }
+        button { padding: 10px 20px; font-size: 16px; cursor: pointer; background: white; border: none; border-radius: 4px; }
+    </style>
 </head>
-<body style="background-color: blueviolet;">
-<h1>Page 4</h1>
+<body>
+    <h1>Page 4 - Top</h1>
+    <button onclick="scrollToTarget()">Manually Jump Instantly</button>
+    <p>This page auto-scrolls down immediately, but you can also click the button above.</p>
+    
+    <div class="spacer"></div>
+
+    <div id="footer-zone" class="target-box">
+        🔮 Page 4 Deep Section reached successfully.
+    </div>
+
+    <script>
+        function scrollToTarget() {
+            document.getElementById("footer-zone").scrollIntoView({ behavior: "smooth" });
+        }
+        // Auto execute on page load / meta refresh
+        document.addEventListener("DOMContentLoaded", scrollToTarget);
+    </script>
 </body>
 </html>
+

@@ -3,8 +3,24 @@
 <head>
     <title>Page 3</title>
     <meta http-equiv="refresh" content="5">
+    <style>
+        body { background-color: lightcoral; font-family: sans-serif; height: 2000px; padding: 20px; }
+        .marker { position: absolute; top: 800px; left: 20px; background: white; padding: 15px; border: 2px solid red; }
+    </style>
 </head>
-<body style="background-color: lightcoral;">
-<h1>Page 3</h1>
+<body>
+    <h1>Page 3 - Top</h1>
+    <p>This page features a strict 800px pixel-coordinate scroll jump on refresh.</p>
+
+    <div class="marker">
+        📍 Stopped exactly 800 pixels down from the top!
+    </div>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            window.scrollTo({ top: 800, behavior: "smooth" });
+        });
+    </script>
 </body>
 </html>
+

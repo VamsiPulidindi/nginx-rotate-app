@@ -3,8 +3,27 @@
 <head>
     <title>Page 1</title>
     <meta http-equiv="refresh" content="5">
+    <style>
+        body { background-color: lightblue; font-family: sans-serif; margin: 0; padding: 20px; }
+        .spacer { height: 1200px; background: linear-gradient(lightblue, steelblue); }
+        .target { padding: 20px; background: white; border-radius: 8px; margin-top: 20px; }
+    </style>
 </head>
-<body style="background-color: lightblue;">
-<h1>Page 1</h1>
+<body>
+    <h1>Page 1 - Top</h1>
+    <p>This page will auto-refresh in 5 seconds and automatically jump to the bottom.</p>
+    
+    <div class="spacer"></div>
+    
+    <div id="jump-target" class="target">
+        <h2>🎯 Arrived at Bottom Section!</h2>
+    </div>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            document.getElementById("jump-target").scrollIntoView({ behavior: "smooth" });
+        });
+    </script>
 </body>
 </html>
+
